@@ -20,7 +20,7 @@ export default function Home() {
                 yoyo: true,
                 rotation: 360,
                 duration: 2,
-                borderRadius: "15%",
+                borderRadius: "100%",
                 backgroundColor: "rgb(14, 165, 233)", // sky-500
                 ease: "power1.inOut",
             },
