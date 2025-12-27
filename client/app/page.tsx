@@ -35,13 +35,13 @@ export default function Home() {
                 </h1>
                 <div className="flex items-center justify-center gap-8 my-8">
                     <Link
-                        href="/signup"
-                        className="py-2 px-5 rounded-xl text-xl border border-white hover:border-black hover:cursor-pointer hover:bg-green-700 hover:text-black hover:-translate-y-1 transition-all ease-in-out"
+                        href="/login"
+                        className="py-2 px-5 rounded-xl text-xl border border-white hover:border-black hover:cursor-pointer hover:bg-green-500 hover:text-black hover:-translate-y-1 transition-all ease-in-out"
                     >
                         Login.
                     </Link>
                     <Link
-                        href="/login"
+                        href="/signup"
                         className="py-2 px-5 rounded-xl text-xl border border-white hover:border-black hover:cursor-pointer hover:bg-sky-500 hover:text-black hover:-translate-y-1 transition-all ease-in-out"
                     >
                         Sign Up.
