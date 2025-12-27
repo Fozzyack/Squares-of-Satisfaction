@@ -1,6 +1,7 @@
 "use client";
 
 import { Eye, EyeOff, Lock, Mail } from "lucide-react";
+import Link from "next/link";
 import { useRef, useState } from "react";
 
 const LoginPage = () => {
@@ -73,6 +74,16 @@ const LoginPage = () => {
                 >
                     Login
                 </button>
+                <div className="text-center">
+                    <p>Don't have an account?</p>
+                    <Link
+                        href="/signup"
+                        className="text-green-700 hover:text-green-500 transition-all ease-in-out"
+                    >
+                        {" "}
+                        Create Account{" "}
+                    </Link>
+                </div>
             </form>
         </div>
     );
