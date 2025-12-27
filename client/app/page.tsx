@@ -8,12 +8,12 @@ export default function Home() {
         gsap.fromTo(
             "#green-box",
             {
-                x: 0,
+                x: -250,
                 rotation: 0,
-                borderRadius: "5%",
+                borderRadius: "15%",
             },
             {
-                x: 400,
+                x: 250,
                 repeat: -1,
                 yoyo: true,
                 rotation: 360,
@@ -25,14 +25,14 @@ export default function Home() {
     }, []);
     return (
         <main className="w-full h-screen">
-            <div className="h-screen w-full">
-                <div className="h-[80%] flex flex-col items-center justify-center">
+            <div className="h-screen w-full flex flex-col items-center justify-center">
+                <div className="flex flex-col items-center justify-center">
                     <h1 className="text-5xl">
                         The <span className="text-green-700">Squares</span> of
                         Satisfaction
                     </h1>
                     <div className="flex items-center justify-center gap-8 my-8">
-                        <button className="py-2 px-5 rounded-xl text-lg border border-white hover:border-green-700 ">
+                        <button className="py-2 px-5 rounded-xl text-xl border border-white hover:border-black hover:cursor-pointer hover:bg-green-700 hover:text-black hover:-translate-y-1 transition-all ease-in-out">
                             Login
                         </button>
                     </div>
@@ -40,7 +40,7 @@ export default function Home() {
                 <div className="mx-10">
                     <div
                         id="green-box"
-                        className="w-[100px] h-[100px] bg-green-700 rounded-xl"
+                        className="w-[100px] h-[100px] bg-green-700"
                     />
                 </div>
             </div>
