@@ -1,0 +1,14 @@
+services:
+  postgres-db:
+    image: postgres:18.1
+    restart: always
+    ports:
+      - "6000:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres 
+      POSTGRES_DB: squares
+    volumes:
+      - squaresdb:/var/lib/postgresql
+volumes:
+  squaresdb:
