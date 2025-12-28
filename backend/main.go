@@ -2,6 +2,7 @@ package main
 
 import (
 	"backend/app"
+	"backend/routes"
 	"flag"
 	"fmt"
 	"net/http"
@@ -17,11 +18,10 @@ func main() {
 		panic(err)
 	}
 
-	app.Logger.Printf("App Starting on Port %d", port)
-
-	http.HandleFunc("/health", HealthCheck)
+	r := routes.SetupRoutes(app)
 	server := &http.Server{
 		Addr:         fmt.Sprintf(":%d", port),
+		Handler:      r,
 		IdleTimeout:  time.Minute,
 		ReadTimeout:  10 * time.Second,
 		WriteTimeout: 30 * time.Second,
@@ -31,8 +31,4 @@ func main() {
 	if err != nil {
 		app.Logger.Fatal("There was an issue running the server")
 	}
-}
-
-func HealthCheck(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Status is Available\n")
 }
