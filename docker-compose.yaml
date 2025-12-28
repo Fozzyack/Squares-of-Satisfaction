@@ -1,7 +1,8 @@
-version "3.8"
+version: "3.8"
 
 services:
   postgres-db:
+    container_name: "squaresDB"
     image: postgres:18.1
     restart: always
     ports:
@@ -11,6 +12,6 @@ services:
       POSTGRES_USER: postgres 
       POSTGRES_DB: squares
     volumes:
-      - squaresdb:/var/lib/postgresql
+      - squaresDBVolume:/var/lib/postgresql
 volumes:
-  squaresdb:
+  squaresDBVolume:
