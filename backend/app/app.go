@@ -1,6 +1,7 @@
 package app
 
 import (
+	"backend/api"
 	"fmt"
 	"log"
 	"net/http"
@@ -8,20 +9,22 @@ import (
 )
 
 type Application struct {
-	Logger *log.Logger
+	Logger        *log.Logger
+	SquareHandler *api.SquareHandler
 }
 
 func NewApplication() (*Application, error) {
-
 	logger := log.New(os.Stdout, "", log.Ldate|log.Ltime)
 
-	app := &Application{
-		Logger: logger,
-	}
+	squareHandler := api.NewSquareHandler()
 
+	app := &Application{
+		Logger:        logger,
+		SquareHandler: squareHandler,
+	}
 	return app, nil
 }
 
 func (app *Application) HealthCheck(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Status is Available\n")
+	fmt.Fprintf(w, "Server Is Healthy\n")
 }

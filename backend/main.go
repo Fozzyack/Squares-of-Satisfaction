@@ -13,12 +13,14 @@ func main() {
 	var port int
 	flag.IntVar(&port, "port", 8090, "go backend server port")
 	flag.Parse()
+
 	app, err := app.NewApplication()
 	if err != nil {
 		panic(err)
 	}
 
 	r := routes.SetupRoutes(app)
+	app.Logger.Printf("Server is Starting on port: %d\n", port)
 	server := &http.Server{
 		Addr:         fmt.Sprintf(":%d", port),
 		Handler:      r,
