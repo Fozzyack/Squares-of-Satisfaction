@@ -19,5 +19,6 @@ func SetupRoutes(app *app.Application) *chi.Mux {
 	r.Get("/health", app.HealthCheck)
 	r.Get("/squares/{id}", app.SquareHandler.HandleGetSquareByID)
 	r.Post("/squares", app.SquareHandler.HandleCreateSquare)
+
 	return r
 }
