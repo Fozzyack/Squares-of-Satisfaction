@@ -6,7 +6,6 @@ import (
 	"flag"
 	"fmt"
 	"net/http"
-	"os"
 	"time"
 )
 
@@ -19,21 +18,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-
-	db, err := app.DatabaseInfo.Open()
-	if err != nil {
-		panic(err)
-	}
-
-	// Testing DB
-	var greeting string
-	err = db.QueryRow("select 'Hello, world!'").Scan(&greeting)
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "QueryRow failed: %v\n", err)
-		os.Exit(1)
-	}
-
-	fmt.Println(greeting)
+	defer app.DB.Close()
 
 	r := routes.SetupRoutes(app)
 	app.Logger.Printf("Server is Starting on port: %d\n", port)

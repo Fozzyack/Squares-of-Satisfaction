@@ -3,6 +3,7 @@ package app
 import (
 	"backend/api"
 	"backend/store"
+	"database/sql"
 	"fmt"
 	"log"
 	"net/http"
@@ -12,19 +13,23 @@ import (
 type Application struct {
 	Logger        *log.Logger
 	SquareHandler *api.SquareHandler
-	DatabaseInfo  *store.DatabaseInfo
+	DB            *sql.DB
 }
 
 func NewApplication() (*Application, error) {
 	logger := log.New(os.Stdout, "", log.Ldate|log.Ltime)
 
-	databaseInfo := store.NewDatabaseInfo()
+	db, err := store.Open()
+	if err != nil {
+		return nil, err
+	}
+
 	squareHandler := api.NewSquareHandler()
 
 	app := &Application{
 		Logger:        logger,
 		SquareHandler: squareHandler,
-		DatabaseInfo:  databaseInfo,
+		DB:            db,
 	}
 	return app, nil
 }
