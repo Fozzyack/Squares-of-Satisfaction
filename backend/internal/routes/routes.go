@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"backend/app"
+	"backend/internal/app"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"

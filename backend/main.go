@@ -1,8 +1,8 @@
 package main
 
 import (
-	"backend/app"
-	"backend/routes"
+	"backend/internal/app"
+	"backend/internal/routes"
 	"flag"
 	"fmt"
 	"net/http"

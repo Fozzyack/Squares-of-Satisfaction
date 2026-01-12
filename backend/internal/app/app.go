@@ -2,7 +2,8 @@ package app
 
 import (
 	"backend/api"
-	"backend/store"
+	"backend/database"
+	"backend/migrations"
 	"database/sql"
 	"fmt"
 	"log"
@@ -19,17 +20,19 @@ type Application struct {
 func NewApplication() (*Application, error) {
 	logger := log.New(os.Stdout, "", log.Ldate|log.Ltime)
 
-	db, err := store.Open()
+	pgDB, err := database.Open()
 	if err != nil {
 		return nil, err
 	}
+
+	err = database.MigrateFS(pgDB, migrations.FS, ".")
 
 	squareHandler := api.NewSquareHandler()
 
 	app := &Application{
 		Logger:        logger,
 		SquareHandler: squareHandler,
-		DB:            db,
+		DB:            pgDB,
 	}
 	return app, nil
 }
