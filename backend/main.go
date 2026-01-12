@@ -5,11 +5,19 @@ import (
 	"backend/internal/routes"
 	"flag"
 	"fmt"
+	"log"
 	"net/http"
 	"time"
+
+	"github.com/joho/godotenv"
 )
 
 func main() {
+	// Load .env file
+	if err := godotenv.Load(); err != nil {
+		log.Println("No .env file found or error loading it")
+	}
+
 	var port int
 	flag.IntVar(&port, "port", 8090, "go backend server port")
 	flag.Parse()

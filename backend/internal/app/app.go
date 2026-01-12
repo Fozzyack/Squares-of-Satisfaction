@@ -26,6 +26,9 @@ func NewApplication() (*Application, error) {
 	}
 
 	err = database.MigrateFS(pgDB, migrations.FS, ".")
+	if err != nil {
+		return nil, fmt.Errorf("failed to run migrations: %w", err)
+	}
 
 	squareHandler := api.NewSquareHandler()
 
