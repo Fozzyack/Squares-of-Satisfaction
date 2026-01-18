@@ -9,8 +9,3 @@ type PostgresStore struct {
 func NewPostgresStore(db *sql.DB) *PostgresStore {
 	return &PostgresStore{db :db}
 }
-
-type Store interface {
-	CreateActivity(*Activity) (*Activity, error)
-	GetActivityById(id string) (*Activity, error)
-}

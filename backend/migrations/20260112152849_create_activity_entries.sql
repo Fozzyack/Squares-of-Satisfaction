@@ -8,7 +8,6 @@ CREATE TABLE activity_entries (
     notes TEXT,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    UNIQUE(activity_id, completed_at)
 );
 
 CREATE INDEX idx_activity_entries_activity_id ON activity_entries(activity_id);

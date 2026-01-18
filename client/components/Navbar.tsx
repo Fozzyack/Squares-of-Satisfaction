@@ -11,8 +11,7 @@ export default function Navbar({ onAddClick }: NavbarProps) {
     return (
         <nav className="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-6 py-4">
             <div className="max-w-6xl mx-auto flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                <Link href="/">
+                <Link href="/" className="flex items-center gap-3">
                     <div className="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center">
                         <Activity className="w-5 h-5 text-white" />
                     </div>
@@ -20,7 +19,6 @@ export default function Navbar({ onAddClick }: NavbarProps) {
                         Squares of Satisfaction
                     </h1>
                 </Link>
-                </div>
                 <div className="flex items-center gap-4">
                     <button
                         onClick={onAddClick}
