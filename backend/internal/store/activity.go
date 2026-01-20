@@ -46,7 +46,7 @@ func (pg *PostgresStore) CreateActivity(activity *Activity) (*Activity, error) {
 	return activity, nil
 }
 
-func (pg *PostgresStore) GetActivityById(id int64) (*Activity, error) {
+func (pg *PostgresStore) GetActivityById(id string) (*Activity, error) {
 	activity := &Activity{}
 	return activity, nil
 }
