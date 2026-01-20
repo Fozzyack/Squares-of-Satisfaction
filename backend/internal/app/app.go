@@ -3,6 +3,7 @@ package app
 import (
 	"backend/api"
 	"backend/database"
+	"backend/internal/store"
 	"backend/migrations"
 	"database/sql"
 	"fmt"
@@ -12,9 +13,9 @@ import (
 )
 
 type Application struct {
-	Logger        *log.Logger
-	SquareHandler *api.SquareHandler
-	DB            *sql.DB
+	Logger      *log.Logger
+	UserHandler *api.UserHandler
+	DB          *sql.DB
 }
 
 func NewApplication() (*Application, error) {
@@ -30,12 +31,15 @@ func NewApplication() (*Application, error) {
 		return nil, fmt.Errorf("failed to run migrations: %w", err)
 	}
 
-	squareHandler := api.NewSquareHandler()
+	postgresStore := store.NewPostgresStore(pgDB) // Importing the postgres store
+
+	// Handlers
+	userHandler := api.NewUserHandler(postgresStore)
 
 	app := &Application{
-		Logger:        logger,
-		SquareHandler: squareHandler,
-		DB:            pgDB,
+		Logger:      logger,
+		UserHandler: userHandler,
+		DB:          pgDB,
 	}
 	return app, nil
 }

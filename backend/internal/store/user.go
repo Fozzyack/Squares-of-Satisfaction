@@ -7,8 +7,8 @@ import (
 )
 
 type NewUser struct {
-	Id string `json:"id"`
-	Email string `json:"email"`
+	Id       string `json:"id"`
+	Email    string `json:"email"`
 	Username string `json:"username"`
 	Password string `json:"password"`
 }
@@ -24,10 +24,10 @@ type User struct {
 
 type UserStore interface {
 	CreateUser(newUser NewUser) (*User, error)
-	GetUserById(id string) (*User, error)
+	// GetUserById(id string) (*User, error)
 }
 
-func (pg *PostgresStore) CreateUser (newUser NewUser) (*User, error) {
+func (pg *PostgresStore) CreateUser(newUser NewUser) (*User, error) {
 	tx, err := pg.db.Begin()
 	if err != nil {
 		return nil, err
@@ -53,4 +53,3 @@ func (pg *PostgresStore) CreateUser (newUser NewUser) (*User, error) {
 
 	return user, nil
 }
-
