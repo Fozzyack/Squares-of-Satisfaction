@@ -1,6 +1,10 @@
 package store
 
-import "time"
+import (
+	"time"
+
+	"golang.org/x/crypto/bcrypt"
+)
 
 type NewUser struct {
 	Id string `json:"id"`
@@ -30,6 +34,11 @@ func (pg *PostgresStore) CreateUser (newUser NewUser) (*User, error) {
 	}
 	defer tx.Rollback()
 
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(newUser.Password), bcrypt.DefaultCost)
+	if err != nil {
+		return nil, err
+	}
+
 	query := `
 	INSERT INTO users (id, email, username, password_hash)
 	VALUES (uuid_generate_v4(), $1, $2, $3)
@@ -37,7 +46,7 @@ func (pg *PostgresStore) CreateUser (newUser NewUser) (*User, error) {
 	`
 
 	var user = &User{}
-	err = tx.QueryRow(query, newUser.Email, newUser.Username, newUser.Password).Scan(user.Email, user.Username)
+	err = tx.QueryRow(query, newUser.Email, newUser.Username, string(hashedPassword)).Scan(user.Id, user.Email, user.Username, user.CreatedAt)
 	if err != nil {
 		return nil, err
 	}
